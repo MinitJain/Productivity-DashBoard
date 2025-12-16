@@ -1,0 +1,137 @@
+:root {
+  --pri: #0f0f0f;
+  --sec: #f5f5f5;
+  --tri: #b3b3b3;
+
+  --white: #ffffff;
+  --black: #000000;
+
+  --gray-100: #fafafa;
+  --gray-200: #e5e5e5;
+  --gray-400: #a3a3a3;
+  --gray-600: #525252;
+  --gray-800: #1f1f1f;
+}
+
+/* @font-face {
+  font-family: "Aeonik";
+  src: url("./AeonikTRIAL-Light.woff2") format("woff2"),
+    url("./AeonikTRIAL-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+} */
+/* 
+@font-face {
+  font-family: "Aeonik";
+  src: url("./AeonikTRIAL-Regular.woff2") format("woff2"),
+    url("./AeonikTRIAL-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+} */
+/* 
+@font-face {
+  font-family: "Aeonik";
+  src: url("./AeonikTRIAL-Bold.woff2") format("woff2"),
+    url("./AeonikTRIAL-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  background-color: #f4f4f4;
+  color: #333;
+  font-size: 16px;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.dashboard {
+  height: 100vh;
+  display: grid;
+  gap: 0.2rem;
+
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+
+  grid-template-areas:
+    "todo   clock   pomo"
+    "goals  notes  motive"
+    "goals  notes  media";
+}
+section.elem {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.fullScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--gray-100);
+  padding: 16px;
+  display: none;
+}
+
+.todo {
+  grid-area: todo;
+  background-color: var(--gray-100);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.pomo {
+  grid-area: pomo;
+  background-color: red;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.clock {
+  grid-area: clock;
+  background-color: yellow;
+  border-radius: 8px;
+  padding: 16px;
+}
+.goals {
+  grid-area: goals;
+  background-color: orange;
+  border-radius: 8px;
+  padding: 16px;
+}
+.notes {
+  grid-area: notes;
+  background-color: green;
+  border-radius: 8px;
+  padding: 16px;
+}
+.motive {
+  grid-area: motive;
+  background-color: blue;
+  border-radius: 8px;
+  padding: 16px;
+}
+.media {
+  grid-area: media;
+  background-color: purple;
+  border-radius: 8px;
+  padding: 16px;
+}

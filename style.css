@@ -121,7 +121,14 @@ section.elem {
   border-radius: 8px;
   background-color: var(--gray-100);
   padding: 16px;
+}
+
+.fullScreen {
   display: none;
+}
+
+.fullScreen.active {
+  display: flex;
 }
 
 .todo {
@@ -190,13 +197,17 @@ section.elem {
 .fullScreen.fullScreen-TodoPage {
   height: 100%;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   gap: 1rem;
   padding: 0 16px;
   box-sizing: border-box;
+
+  min-height: 100%;
+}
+.fullScreen.active.fullScreen-TodoPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {

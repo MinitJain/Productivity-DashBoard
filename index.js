@@ -6,7 +6,8 @@ allElems.forEach(function (elem) {
   elem.addEventListener("click", function () {
     var index = Number(elem.id);
 
-    allFullElem[index].style.display = "block";
+    allFullElem.forEach((fs) => fs.classList.remove("active"));
+    allFullElem[index].classList.add("active");
   });
 });
 
@@ -14,13 +15,23 @@ allBackButtons.forEach(function (button) {
   button.addEventListener("click", function () {
     var index = Number(button.id);
 
-    allFullElem[index].style.display = "none";
+    allFullElem[index].classList.remove("active");
   });
 });
+
 const todoInput = document.getElementById("todoInput");
 const addBtn = document.getElementById("addBtn");
 const todoList = document.getElementById("todoList");
 let todos = [];
+
+const savedTodos = localStorage.getItem("todos"); // if todos exist, get those todos and name them savedTodos
+
+if (savedTodos) {
+  // if you do get savedTodos
+  todos = JSON.parse(savedTodos); // parse them into objects
+  console.log("Saved todos = ", savedTodos);
+  renderTodos();
+}
 
 addBtn.addEventListener("click", addTodo);
 todoInput.addEventListener("keypress", function (e) {
@@ -28,6 +39,10 @@ todoInput.addEventListener("keypress", function (e) {
     addTodo();
   }
 });
+
+function saveTodosLocally() {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
 
 function addTodo() {
   const text = todoInput.value.trim();
@@ -39,9 +54,11 @@ function addTodo() {
     completed: false,
   };
 
-  todos.push(todo);
+  todos.push(todo); // todos me jitne bhi elements hai unn sabko todo bola gaya hai
+
   todoInput.value = "";
   renderTodos();
+  saveTodosLocally();
 }
 
 function toggleComplete(id) {
@@ -49,12 +66,14 @@ function toggleComplete(id) {
   if (todo) {
     todo.completed = !todo.completed;
     renderTodos();
+    saveTodosLocally();
   }
 }
 
 function deleteTodo(id) {
   todos = todos.filter((t) => t.id !== id);
   renderTodos();
+  saveTodosLocally();
 }
 
 function editTodo(id) {
@@ -76,6 +95,7 @@ function editTodo(id) {
     if (newText !== "") {
       todo.text = newText;
       renderTodos();
+      saveTodosLocally();
     }
   };
 
@@ -85,6 +105,7 @@ function editTodo(id) {
       if (newText !== "") {
         todo.text = newText;
         renderTodos();
+        saveTodosLocally();
       }
     }
   });
@@ -112,7 +133,7 @@ function renderTodos() {
 
     const editBtn = document.createElement("button");
     editBtn.className = "edit-btn";
-    editBtn.innerHTML = "✏️";
+    editBtn.innerHTML = "✏️ ";
     editBtn.onclick = () => editTodo(todo.id);
 
     const deleteBtn = document.createElement("button");
